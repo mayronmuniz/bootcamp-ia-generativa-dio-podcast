@@ -1,0 +1,86 @@
+/* style.css — estilos extraídos de index.html */
+
+/* Reset básico / corpo */
+body {
+	background-color: #050505;
+	color: #ffffff;
+	overflow-x: hidden;
+}
+
+/* Canvas do Matrix */
+#matrix-canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: 0.15;
+}
+
+/* Scrollbar personalizada estilo terminal */
+::-webkit-scrollbar {
+	width: 8px;
+}
+::-webkit-scrollbar-track {
+	background: #001100;
+}
+::-webkit-scrollbar-thumb {
+	background: #00ff41;
+	border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #00cc33;
+}
+
+/* Efeitos de Texto */
+.glitch-text {
+	text-shadow: 2px 0 #003b00, -2px 0 #00ff41;
+}
+
+/* Range Input do Player */
+input[type=range] {
+	-webkit-appearance: none;
+	appearance: none; /* standard property for compatibility */
+	background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 16px;
+	width: 16px;
+	border-radius: 50%;
+	background: #00ff41;
+	cursor: pointer;
+	margin-top: -6px;
+	box-shadow: 0 0 10px #00ff41;
+}
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 4px;
+	cursor: pointer;
+	background: #003b00;
+	border-radius: 2px;
+}
+
+/* Animação de digitação simples */
+.typing-cursor::after {
+	content: '|';
+	animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+	50% { opacity: 0; }
+}
+
+/* Nova Animação de Pulsação do Cérebro */
+@keyframes brain-pulse {
+	0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0, 255, 65, 0.3)); }
+	50% { transform: scale(1.2); filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.8)); }
+	100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0, 255, 65, 0.3)); }
+}
+
+.animate-brain-pulse {
+	animation: brain-pulse 3s infinite ease-in-out;
+}
+
