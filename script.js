@@ -109,6 +109,60 @@ progressBar.addEventListener('input', () => {
 volumeSlider.addEventListener('input', (e) => {
 	audio.volume = e.target.value;
 });
+// --- CONTROLE DE VELOCIDADE (ENGRENAGEM + MENU SUSPENSO) ---
+const speedToggle = document.getElementById('speed-toggle');
+const speedMenu = document.getElementById('speed-menu');
+const speedOptions = document.querySelectorAll('.speed-option');
+
+function openSpeedMenu() {
+	speedMenu.classList.remove('hidden');
+	speedToggle.setAttribute('aria-expanded', 'true');
+}
+function closeSpeedMenu() {
+	speedMenu.classList.add('hidden');
+	speedToggle.setAttribute('aria-expanded', 'false');
+}
+
+// Toggle do menu
+speedToggle.addEventListener('click', (e) => {
+	e.stopPropagation();
+	if (speedMenu.classList.contains('hidden')) openSpeedMenu(); else closeSpeedMenu();
+});
+
+// Seleção de velocidade
+function setSelectedSpeed(rate, clickedBtn) {
+	audio.playbackRate = rate;
+	speedOptions.forEach(b => b.classList.remove('bg-matrix-green', 'text-black'));
+	if (clickedBtn) {
+		clickedBtn.classList.add('bg-matrix-green', 'text-black');
+	}
+}
+
+speedOptions.forEach(opt => {
+	opt.addEventListener('click', (e) => {
+		const rate = parseFloat(opt.dataset.speed);
+		setSelectedSpeed(rate, opt);
+		closeSpeedMenu();
+	});
+});
+
+// Fechar ao clicar fora
+document.addEventListener('click', (e) => {
+	if (!speedMenu.classList.contains('hidden')) {
+		// se clique fora do menu ou do toggle, fecha
+		if (!speedMenu.contains(e.target) && e.target !== speedToggle) {
+			closeSpeedMenu();
+		}
+	}
+});
+
+// Fechar com ESC
+document.addEventListener('keydown', (e) => {
+	if (e.key === 'Escape') closeSpeedMenu();
+});
+
+// Valor padrão
+setSelectedSpeed(1, document.querySelector('.speed-option[data-speed="1"]'));
 
 // Botões de Pular 15s
 forwardBtn.addEventListener('click', () => {
