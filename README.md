@@ -39,6 +39,7 @@ Responsividade com Tailwind: Layout fluido construído com Utility-First CSS.
 Você pode acessar a aplicação rodando diretamente no seu navegador através do GitHub Pages:
 
 🔗 Clique aqui para acessar o Projeto Online
+[https://mayronmuniz.github.io/bootcamp-ia-generativa-dio-podcast/]
 
 💻 Rodando Localmente
 
